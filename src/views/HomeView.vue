@@ -14,5 +14,14 @@ export default {
   components: {
     HelloWorld,
   },
+  data() {
+    return {
+      items:
+      [{
+        name: "Milch",
+        anzahl: 2 
+      }]
+    }
+  }
 };
 </script>
