@@ -8,8 +8,6 @@
       :index="index"
       :artname="artikel.artname"
       :artanzahl="artikel.artanzahl"
-      :enter-active-class="animate - pulse"
-      :leave-active-class="animate - pulse"
       :checked="artikel.checked"
     />
   </div>
@@ -18,8 +16,21 @@
 <script>
 import EinkaufsArtikel from "@/components/EinkaufsArtikel.vue";
 import AddArtikel from "@/components/AddArtikel.vue";
+import axios from 'axios';
+const baseURL = "https://pwa.liambaum.de/gettest"
 export default {
   name: "EinkaufsListe",
+  async created () {
+    console.log("in created lifecycle")
+    try {
+      const res = await axios.get(baseURL);
+      this.data = res.data;
+    } catch(e) {
+      console.error(e)
+    }
+    console.log(this.data);
+    this.liste = this.data.liste;
+  },
   components: {
     EinkaufsArtikel,
     AddArtikel,
@@ -29,15 +40,35 @@ export default {
   },
   data() {
     return {
+      //info: [],
       liste: [
-        { artname: "Kaffe", artanzahl: 1, id: 1, checked: false },
-        { artname: "Apfel", artanzahl: 4, id: 2, checked: false },
-        { artname: "Mango", artanzahl: 2, id: 3, checked: true },
+        {
+          artname: "Kaffe",
+          artanzahl: 1,
+          id: 1,
+          checked: false,
+        },
+        {
+          artname: "Apfel",
+          artanzahl: 4,
+          id: 2,
+          checked: false,
+        },
+        {
+          artname: "Mango",
+          artanzahl: 2,
+          id: 3,
+          checked: true,
+        },
       ],
       id: 3,
     };
   },
+
   methods: {
+    async pushArticle(par_name, par_anzahl) {
+      const res = await axios.post(baseURL, {artname: "Testobject", artanzahl: 99, id:30, checked:true});
+    },
     addArticle(par_name, par_anzahl) {
       this.id += 1;
       let neueliste = [];
@@ -46,7 +77,7 @@ export default {
         artanzahl: par_anzahl,
         id: this.id,
       });
-      this.liste.forEach(element => {
+      this.liste.forEach((element) => {
         neueliste.push(element);
       });
       this.liste = neueliste;
@@ -59,18 +90,17 @@ export default {
     markChecked(index, checkState) {
       this.liste[index].checked = checkState;
       let tempList = [];
-      this.liste.forEach(article => {
-        if(!article.checked){
-          tempList.push(article)
+      this.liste.forEach((article) => {
+        if (!article.checked) {
+          tempList.push(article);
         }
       });
-      this.liste.forEach(article => {
-        if(article.checked){
-          tempList.push(article)
+      this.liste.forEach((article) => {
+        if (article.checked) {
+          tempList.push(article);
         }
       });
       this.liste = tempList;
-
     },
   },
 };

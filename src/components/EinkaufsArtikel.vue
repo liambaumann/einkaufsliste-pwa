@@ -88,8 +88,6 @@ export default {
     return {
       name: this.artname,
       anzahl: this.artanzahl,
-      index: this.index,
-      checked: this.checked,
     };
   },
   methods: {

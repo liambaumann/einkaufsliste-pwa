@@ -1,0 +1,3 @@
+{ artname: "Mongo", artanzahl: 1, id: 1, checked: false },
+{ artname: "Gurki", artanzahl: 4, id: 2, checked: false },
+{ artname: "Banan", artanzahl: 2, id: 3, checked: true },

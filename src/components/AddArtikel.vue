@@ -29,7 +29,7 @@
       id="inputName"
       ref="inputName"
       type="text"
-      placeholder="Name"
+      placeholder="Artikel hinzufügen"
     />
     <input
       class="m-auto align-middle h-13 ml-4 mr-2 shadow appearance-none border rounded-xl py-3 w-[30%] text-lg px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
