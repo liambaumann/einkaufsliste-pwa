@@ -16,11 +16,11 @@
 <script>
 import EinkaufsArtikel from "@/components/EinkaufsArtikel.vue";
 import AddArtikel from "@/components/AddArtikel.vue";
-import axios from 'axios';
-const baseURL = "https://pwa.liambaum.de/gettest"
+//import axios from 'axios';
+//const baseURL = "https://pwa.liambaum.de/gettest"
 export default {
   name: "EinkaufsListe",
-  async created () {
+  /*async created () {
     console.log("in created lifecycle")
     try {
       const res = await axios.get(baseURL);
@@ -30,7 +30,7 @@ export default {
     }
     console.log(this.data);
     this.liste = this.data.liste;
-  },
+  },*/
   components: {
     EinkaufsArtikel,
     AddArtikel,
