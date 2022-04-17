@@ -16,21 +16,10 @@
 <script>
 import EinkaufsArtikel from "@/components/EinkaufsArtikel.vue";
 import AddArtikel from "@/components/AddArtikel.vue";
-//import axios from 'axios';
-//const baseURL = "https://pwa.liambaum.de/gettest"
+import axios from 'axios';
+const baseURL = "https://pwa.liambaum.de/gettest"
 export default {
   name: "EinkaufsListe",
-  /*async created () {
-    console.log("in created lifecycle")
-    try {
-      const res = await axios.get(baseURL);
-      this.data = res.data;
-    } catch(e) {
-      console.error(e)
-    }
-    console.log(this.data);
-    this.liste = this.data.liste;
-  },*/
   components: {
     EinkaufsArtikel,
     AddArtikel,
@@ -45,11 +34,22 @@ export default {
       id: 3,
     };
   },
+  async created () {
+    console.log("in created lifecycle")
+    try {
+      const res = await axios.get(baseURL);
+      this.data = res.data;
+    } catch(e) {
+      console.error(e)
+    }
+    console.log(this.data);
+    this.liste = this.data.liste;
+  },
   mounted() {
     console.log("abcde");
-    this.liste = JSON.parse(localStorage.getItem('elist'));
+    //this.liste = JSON.parse(localStorage.getItem('elist'));
     console.log(this.liste);
-    if (this.liste == null) {
+    /*if (this.liste == null) {
       this.liste =  [
         {
           artname: "Milch",
@@ -58,12 +58,12 @@ export default {
           checked: false,
         }
       ];
-    }
+    }*/
   },
   methods: {
-    async pushArticle(par_name, par_anzahl) {
+    /*async pushArticle(par_name, par_anzahl) {
       const res = await axios.post(baseURL, {artname: "Testobject", artanzahl: 99, id:30, checked:true});
-    },
+    },*/
     saveLocally() {
       localStorage.setItem('elist', JSON.stringify(this.liste));
     },
