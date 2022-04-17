@@ -64,28 +64,36 @@ export default {
       id: 3,
     };
   },
-
+  mounted() {
+    console.log("abcde");
+    this.liste = JSON.parse(localStorage.getItem('elist'));
+    console.log(this.liste);
+  },
   methods: {
     async pushArticle(par_name, par_anzahl) {
       const res = await axios.post(baseURL, {artname: "Testobject", artanzahl: 99, id:30, checked:true});
     },
+    saveLocally() {
+      localStorage.setItem('elist', JSON.stringify(this.liste));
+    },
     addArticle(par_name, par_anzahl) {
-      this.id += 1;
       let neueliste = [];
       neueliste.push({
         artname: par_name,
         artanzahl: par_anzahl,
-        id: this.id,
+        id: this.liste.length+1,
       });
       this.liste.forEach((element) => {
         neueliste.push(element);
       });
       this.liste = neueliste;
       //alert(this.liste)
+      this.saveLocally();
     },
     removeArticle(index) {
       this.liste.splice(index, 1);
       //alert(this.liste)
+      this.saveLocally();
     },
     markChecked(index, checkState) {
       this.liste[index].checked = checkState;
@@ -101,6 +109,7 @@ export default {
         }
       });
       this.liste = tempList;
+      this.saveLocally()
     },
   },
 };
