@@ -41,26 +41,7 @@ export default {
   data() {
     return {
       //info: [],
-      liste: [
-        {
-          artname: "Kaffe",
-          artanzahl: 1,
-          id: 1,
-          checked: false,
-        },
-        {
-          artname: "Apfel",
-          artanzahl: 4,
-          id: 2,
-          checked: false,
-        },
-        {
-          artname: "Mango",
-          artanzahl: 2,
-          id: 3,
-          checked: true,
-        },
-      ],
+      liste: null,
       id: 3,
     };
   },
@@ -68,6 +49,16 @@ export default {
     console.log("abcde");
     this.liste = JSON.parse(localStorage.getItem('elist'));
     console.log(this.liste);
+    if (this.liste == null) {
+      this.liste =  [
+        {
+          artname: "Milch",
+          artanzahl: 2,
+          id: 1,
+          checked: false,
+        }
+      ];
+    }
   },
   methods: {
     async pushArticle(par_name, par_anzahl) {
